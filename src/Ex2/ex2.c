@@ -2,6 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 
+// define global vars
+const char* invalidOptionString = "Invalid option\n";
+#define RESET   "\033[0m"
+#define GREEN   "\033[0;32m"
+#define RED "\033[0;31m"
+
 // define handler function
 typedef void (*Handler)(void);
 
@@ -59,7 +65,7 @@ void runMenu(MenuItem menu[], int menuSize)
 			int c;
 			while ((c = getchar()) != '\n' && c != EOF)
 				;
-			printf("Invalid input!\n");
+			printf(RED "%s" RESET, invalidOptionString);
 			continue;
 		}
 
@@ -71,7 +77,7 @@ void runMenu(MenuItem menu[], int menuSize)
 		}
 		else
 		{
-			printf("Invalid choice!\n");
+			printf(RED "%s" RESET, invalidOptionString);
 		}
 	}
 }
@@ -84,7 +90,7 @@ void runMenu(MenuItem menu[], int menuSize)
 void printMenu(MenuItem *menu, int size)
 {
 	// print the menu
-	printf("Choose an option:\n");
+	printf(GREEN "Choose an option:\n" RESET);
 	for (int i = 0; i < size; i++)
 	{
 		printf("%d. %s\n", i, menu[i].name);
