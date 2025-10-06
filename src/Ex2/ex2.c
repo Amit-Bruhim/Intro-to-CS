@@ -29,6 +29,7 @@ void base64ToDecimal();
 void swapBits();
 void printMenu(MenuItem *menu, int size);
 void runMenu(MenuItem *menu, int menuSize);
+
 /**
  * @brief - main function that gives the user 6 options of functions
  *
