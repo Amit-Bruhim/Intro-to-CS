@@ -8,7 +8,7 @@ const char *invalidOptionString = "Invalid option\n";
 #define GREEN "\033[0;32m"
 #define RED "\033[0;31m"
 #define ARRAY_SIZE 10
-#define DECIMAL_BASE 10 
+#define DECIMAL_BASE 10
 
 // define handler function
 typedef void (*Handler)(void);
@@ -35,6 +35,7 @@ int countDigits(int number);
 int reverse(int number, int base);
 int checkingExiting(unsigned int number, int sum, int pow, int base);
 int power(int base, int pow);
+int countPath(int width, int height, int moves, char direction);
 
 /**
  * @brief - main function that gives the user 6 options of functions
@@ -427,5 +428,76 @@ void coolNumber()
  */
 void countPaths()
 {
-    printf("Count paths function selected!\n");
+    // let the user choose the width and the hight of the table
+    printf("Enter width and height:\n");
+    unsigned int width, height;
+    scanf("%u", &width);
+    scanf("%u", &height);
+    // edge cases
+    if (width == 0 || height == 0)
+    {
+        printf("The number of paths is 0\n");
+        // prints suitable massage
+    }
+    else
+    {
+        printf("The number of paths is %d\n", countPath(width, height, 0, '0'));
+    }
+}
+
+/**
+ * @brief function that counts the amount of paths of
+ * a dog making his way to a bone (without going
+ * 3 steps at the same direction).
+ *
+ * @param width the width of the way
+ * @param height the height of the way
+ * @param moves the number of moves at the same direction.
+ * @param direction char that represent the direction that the dogs walks
+ * (backwards - 'u' stands for up, and 'l' for left).
+ *
+ * @return the number of legal paths.
+ */
+int countPath(int width, int height, int moves, char direction)
+{
+    // declarin the maximum legal steps at the same direction.
+    const int MAX_STEPS = 3;
+    // edge cases.
+    if (width == 0 || height == 0)
+    {
+        return 0;
+    }
+    // return 0 for all the cases that involves more steps at the same direction
+    // than alowed.
+    if (moves >= MAX_STEPS)
+    {
+        return 0;
+        // stopping condition when the path is a line or a column.
+    }
+    else if (height == 1 && width == 1)
+    {
+        return 1;
+    }
+    else
+    {
+        // calculates (backwards) the alowed paths if the dog took right.
+        if (direction == 'l')
+        {
+            /* adding 1 to the number of moves for the paths that going right,
+             and reboots the moves to 1 for the paths that going down*/
+            return (countPath(width - 1, height, moves + 1, 'l') + countPath(width, height - 1, 1, 'u'));
+            // calculates (backwards) the alowed paths if the dog took down.
+        }
+        else if (direction == 'u')
+        {
+            /* adding 1 to the number of moves for the paths that going down,
+             and reboots the moves to 1 for the paths that going right*/
+            return (countPath(width - 1, height, 1, 'l') + countPath(width, height - 1, moves + 1, 'u'));
+            // for the first case, rebooting both to 1.
+        }
+        else
+        {
+            return (countPath(width - 1, height, 1, 'l') + countPath(width, height - 1, 1, 'u'));
+        }
+    }
 }
