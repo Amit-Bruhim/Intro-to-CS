@@ -7,6 +7,8 @@ const char *invalidOptionString = "Invalid option\n";
 #define RESET "\033[0m"
 #define GREEN "\033[0;32m"
 #define RED "\033[0;31m"
+#define ARRAY_SIZE 10
+#define DECIMAL_BASE 10 
 
 // define handler function
 typedef void (*Handler)(void);
@@ -293,11 +295,15 @@ int checkingExiting(unsigned int number, int sum, int pow, int base)
  *
  * @return the result of the calculation.
  */
-int power(int base, int pow) {
+int power(int base, int pow)
+{
     // calculates the number powered by the exponent
-    if (pow != 0) {
+    if (pow != 0)
+    {
         return (base * power(base, pow - 1));
-    } else {
+    }
+    else
+    {
         return 1;
     }
 }
@@ -356,7 +362,62 @@ int reverse(int number, int base)
  */
 void coolNumber()
 {
-    printf("Cool number function selected!\n");
+    // let the user choose the number
+    printf("Enter a natural number:\n");
+    unsigned int number, reversed;
+    scanf("%u", &number);
+    // reverse the number and counts its digits
+    int amount = countDigits(number);
+    reversed = reverse(number, 10);
+    // put the digits in the array
+    unsigned int cool[ARRAY_SIZE];
+    int tempDigit;
+    /* runs as many times as the amount of the digits in the number.
+    every time, takes the next digit and devide the number by 10*/
+    for (int i = 0; i < amount; i++)
+    {
+        tempDigit = reversed % DECIMAL_BASE;
+        cool[i] = tempDigit;
+        reversed = reversed / DECIMAL_BASE;
+    }
+    /* filling the array with the next numbers
+    according to the definition of "cool number"*/
+    int checking = 0;
+    while (1)
+    {
+        int sum = 0;
+        for (int j = 0; j < amount; j++)
+        {
+            sum = sum + cool[j];
+        }
+        /* moves all the numbers one step left, in order to clean
+        room in the arry for the next number*/
+        for (int i = 0; i < amount - 1; i++)
+        {
+            cool[i] = cool[i + 1];
+        }
+        cool[amount - 1] = sum;
+        /* checks if the number is "cool",
+        and stops if its cool or it's certainly not */
+        if (cool[amount - 1] == number)
+        {
+            checking++;
+            break;
+        }
+        else if (cool[amount - 1] > number)
+        {
+            break;
+        }
+    }
+    // prints suitable massage
+    if (checking)
+    {
+        printf("The number is cool\n");
+    }
+    else
+    {
+        printf("The number is not cool\n");
+    }
 }
 
 /**
