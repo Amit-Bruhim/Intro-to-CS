@@ -29,6 +29,11 @@ void runMenu(MenuItem *menu, int menuSize);
 void printMenu(MenuItem *menu, int size);
 void makeLegalBin(int num, int sequence, int digitsAmount);
 void printBin(int num, int countSteps, int digitsAmount);
+int countDigits(int number);
+int reverse(int number, int base);
+int checkingExiting(unsigned int number, int sum, int pow, int base);
+int power(int base, int pow);
+
 /**
  * @brief - main function that gives the user 6 options of functions
  *
@@ -49,12 +54,12 @@ int main()
  */
 void printMenu(MenuItem *menu, int size)
 {
-	// print the menu
-	printf(GREEN "Choose an option:\n" RESET);
-	for (int i = 0; i < size; i++)
-	{
-		printf("%d. %s\n", i, menu[i].name);
-	}
+    // print the menu
+    printf(GREEN "Choose an option:\n" RESET);
+    for (int i = 0; i < size; i++)
+    {
+        printf("%d. %s\n", i, menu[i].name);
+    }
 }
 
 /**
@@ -122,7 +127,8 @@ void runMenu(MenuItem menu[], int menuSize)
  *
  * @return - void
  */
-void exitProgram() {
+void exitProgram()
+{
     printf("Exiting program...\n");
     exit(0);
 }
@@ -132,13 +138,15 @@ void exitProgram() {
  *
  * @return - void
  */
-void binaryStrings() {
+void binaryStrings()
+{
     // takes the number from the user
     printf("Enter length:\n");
     long unsigned int num;
     scanf("%lu", &num);
     // edge cases
-    if (num < 1 || num > sizeof(int) * 8) {
+    if (num < 1 || num > sizeof(int) * 8)
+    {
         printError("Invalid length\n");
         return;
     }
@@ -159,18 +167,23 @@ void binaryStrings() {
  *
  * @return
  */
-void makeLegalBin(int num, int sequence, int digitsAmount) {
+void makeLegalBin(int num, int sequence, int digitsAmount)
+{
     // stops and prints the number in binary base, after the number is "ready".
-    if (num == 0) {
+    if (num == 0)
+    {
         printBin(sequence, 0, digitsAmount);
         printf("\n");
     }
     /* adds only 0 when the previous digit was 1,
     and adds both 1 and 0 when the previous digit was 0. */
-    else if (sequence % 2 == 0) {
+    else if (sequence % 2 == 0)
+    {
         makeLegalBin(num - 1, sequence << 1, digitsAmount);
         makeLegalBin(num - 1, (sequence << 1) + 1, digitsAmount);
-    } else if (sequence % 2 == 1) {
+    }
+    else if (sequence % 2 == 1)
+    {
         makeLegalBin(num - 1, sequence << 1, digitsAmount);
     }
 }
@@ -185,17 +198,22 @@ void makeLegalBin(int num, int sequence, int digitsAmount) {
  *
  * @return
  */
-void printBin(int num, int countSteps, int digitsAmount) {
+void printBin(int num, int countSteps, int digitsAmount)
+{
     // stopping condition when the number ran out of digits.
-    if (num != 0) {
+    if (num != 0)
+    {
         // activates the function again after deviding by 2.
         printBin(num >> 1, countSteps + 1, digitsAmount);
         /* prints the remainder after dividing the number by 2
         (and therefore, prints 1 or 0 at the right place at the binary number). */
         printf("%d", num % 2);
-    } else {
+    }
+    else
+    {
         // fills the number with zeroes from left if nessessory.
-        if (countSteps < digitsAmount) {
+        if (countSteps < digitsAmount)
+        {
             printf("0");
             printBin(0, countSteps + 1, digitsAmount);
         }
@@ -207,8 +225,128 @@ void printBin(int num, int countSteps, int digitsAmount) {
  *
  * @return - void
  */
-void excitingNumber() {
-    printf("Exciting number function selected!\n");
+void excitingNumber()
+{
+    // let the user choose the number
+    printf("Enter a natural number:\n");
+    unsigned int number;
+    int sumOfDigits;
+    unsigned int check;
+    scanf("%d", &number);
+    // edge cases
+    if (number == 0)
+    {
+        printf("The number is exciting\n");
+        return;
+    }
+    sumOfDigits = countDigits(number);
+    // checks if his number is exiting and prints suitable massage
+    check = checkingExiting(number, 0, sumOfDigits, 10);
+    if (check == number)
+    {
+        printf("The number is exciting\n");
+    }
+    else
+    {
+        printf("The number is not exciting\n");
+    }
+    return;
+}
+
+/**
+ * @brief Calculates every digit of the number powered by
+ * the amount of digits in the number, and then sum it.
+ *
+ * @param number The number from the user.
+ * @param sum The current sum of the digits (after the power)
+ * @param pow The exponent
+ * @param base the decimal base
+ *
+ * @return The sum of all of the digits after the power and
+ * the sum (according to the definition of exiting number).
+ */
+int checkingExiting(unsigned int number, int sum, int pow, int base)
+{
+    int tempDigit, newSum = 0;
+    // takes the first digit and powered it by the exponent. than sum it with the
+    // previous value.
+    tempDigit = number % base;
+    newSum = sum + power(tempDigit, pow);
+    // stopping condition when the the number ran out of digits.
+    if (number == 0)
+    {
+        return newSum;
+    }
+    // devides the number by 10 and activates the recoursion once again.
+    number = number / base;
+    return checkingExiting(number, newSum, pow, base);
+}
+
+/**
+ * @brief calculates a number powered by another number.
+ * doing that by multiple the base by itself once every time.
+ * the stopping condition is when the number was multiplied by itself
+ * for the exponent's time.
+ *
+ * @param base the base of the number.
+ * @param pow the exponent of the number.
+ *
+ * @return the result of the calculation.
+ */
+int power(int base, int pow) {
+    // calculates the number powered by the exponent
+    if (pow != 0) {
+        return (base * power(base, pow - 1));
+    } else {
+        return 1;
+    }
+}
+
+/**
+ * @brief Counting the numbers of digits in a number
+ *
+ * @param number The number from the user.
+ *
+ * @return The amount of digits at the number.
+ */
+int countDigits(int number)
+{
+    /* the stoping condition, when the number was devided enough times,
+    that all the digits were counted. */
+    if (number == 0)
+    {
+        return 0;
+    }
+    // devides the number by 10 and runs the function again.
+    number = number / 10;
+    return (1 + countDigits(number));
+}
+
+/**
+ * @brief function that reverse the digits in a number
+ *
+ * @param number The number from the user.
+ *
+ * @return The reversed number.
+ */
+int reverse(int number, int base)
+{
+    int newNum = 0;
+    int temporary;
+    // runs until all the digits were reversed.
+    while (number != 0)
+    {
+        // moves the new number one digit to the left.
+        newNum = newNum * base;
+        // gets the first digit
+        temporary = number % base;
+        // puts the first digit in the new number
+        newNum = newNum + temporary;
+        // deviding the number by 10 in order to get the next number.
+        number = number / base;
+    }
+    // return the reversed number.
+    return newNum;
 }
 
 /**
@@ -216,7 +354,8 @@ void excitingNumber() {
  *
  * @return - void
  */
-void coolNumber() {
+void coolNumber()
+{
     printf("Cool number function selected!\n");
 }
 
@@ -225,6 +364,7 @@ void coolNumber() {
  *
  * @return - void
  */
-void countPaths() {
+void countPaths()
+{
     printf("Count paths function selected!\n");
 }
