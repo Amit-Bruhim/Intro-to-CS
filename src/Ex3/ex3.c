@@ -1,5 +1,6 @@
 #include "../utils/utils.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 // define global vars
 const char *invalidOptionString = "Invalid option\n";
@@ -20,12 +21,14 @@ typedef struct
 // declaring all the functions
 MenuItem *createMenu(int *size);
 void exitProgram();
-void evaluator();
 void binaryStrings();
 void excitingNumber();
 void coolNumber();
 void countPaths();
-
+void runMenu(MenuItem *menu, int menuSize);
+void printMenu(MenuItem *menu, int size);
+void makeLegalBin(int num, int sequence, int digitsAmount);
+void printBin(int num, int countSteps, int digitsAmount);
 /**
  * @brief - main function that gives the user 6 options of functions
  *
@@ -37,6 +40,21 @@ int main()
     MenuItem *menu = createMenu(&size);
     runMenu(menu, size);
     return 0;
+}
+
+/**
+ * @brief - print the menu options to the terminal
+ *
+ * @return - void
+ */
+void printMenu(MenuItem *menu, int size)
+{
+	// print the menu
+	printf(GREEN "Choose an option:\n" RESET);
+	for (int i = 0; i < size; i++)
+	{
+		printf("%d. %s\n", i, menu[i].name);
+	}
 }
 
 /**
@@ -110,21 +128,78 @@ void exitProgram() {
 }
 
 /**
- * @brief - function that runs Evaluator option
- *
- * @return - void
- */
-void evaluator() {
-    printf("Evaluator function selected!\n");
-}
-
-/**
  * @brief - function that runs Binary strings option
  *
  * @return - void
  */
 void binaryStrings() {
-    printf("Binary strings function selected!\n");
+    // takes the number from the user
+    printf("Enter length:\n");
+    long unsigned int num;
+    scanf("%lu", &num);
+    // edge cases
+    if (num < 1 || num > sizeof(int) * 8) {
+        printError("Invalid length\n");
+        return;
+    }
+    // activates the function that prints the appropriate binary numbers.
+    makeLegalBin(num, 0, num);
+    return;
+}
+
+/**
+ * @brief function that creates legal (without 2 consecutive '1')
+ * binary numbers
+ * the function calls itself enough times, until the binary sequence is
+ * in the length that the user chose.
+ *
+ * @param num The number from the user.
+ * @param sequence the current sequence of the binary number.
+ * @param digitsamount the length of the numbers (that the user chose).
+ *
+ * @return
+ */
+void makeLegalBin(int num, int sequence, int digitsAmount) {
+    // stops and prints the number in binary base, after the number is "ready".
+    if (num == 0) {
+        printBin(sequence, 0, digitsAmount);
+        printf("\n");
+    }
+    /* adds only 0 when the previous digit was 1,
+    and adds both 1 and 0 when the previous digit was 0. */
+    else if (sequence % 2 == 0) {
+        makeLegalBin(num - 1, sequence << 1, digitsAmount);
+        makeLegalBin(num - 1, (sequence << 1) + 1, digitsAmount);
+    } else if (sequence % 2 == 1) {
+        makeLegalBin(num - 1, sequence << 1, digitsAmount);
+    }
+}
+
+/**
+ * @brief prints decimal number as a binary number,
+ * in the length of the user's choise.
+ *
+ * @param num The decimal number.
+ * @param countsteps counts the current amount of digits in the number.
+ * @param digitsamount the length of the numbers (that the user chose).
+ *
+ * @return
+ */
+void printBin(int num, int countSteps, int digitsAmount) {
+    // stopping condition when the number ran out of digits.
+    if (num != 0) {
+        // activates the function again after deviding by 2.
+        printBin(num >> 1, countSteps + 1, digitsAmount);
+        /* prints the remainder after dividing the number by 2
+        (and therefore, prints 1 or 0 at the right place at the binary number). */
+        printf("%d", num % 2);
+    } else {
+        // fills the number with zeroes from left if nessessory.
+        if (countSteps < digitsAmount) {
+            printf("0");
+            printBin(0, countSteps + 1, digitsAmount);
+        }
+    }
 }
 
 /**
