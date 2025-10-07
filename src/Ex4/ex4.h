@@ -7,7 +7,7 @@
 
 // define global vars
 #define COLS  7
-#define NUM_ PLAYERS  2
+#define NUM_PLAYERS  2
 #define CONNECT  4
 #define ROWS  6
 
