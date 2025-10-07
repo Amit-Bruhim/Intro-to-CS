@@ -28,6 +28,7 @@ void runEx3();
 void runEx4();
 void runEx5();
 void runEx6();
+void runEx7();
 
 /**
  * @brief - Displays the main menu with several user options
@@ -72,7 +73,8 @@ MenuItem *createMenu(int *size)
         {"Ex3 - Recursion", runEx3},
         {"Ex4 - Connect-N game", runEx4},
         {"Ex5 - Bank", runEx5},
-        {"Ex6 - New World", runEx6}};
+        {"Ex6 - New World", runEx6},
+        {"Ex7 - Wordle", runEx7}};
 
     // update the size and return
     *size = sizeof(menu) / sizeof(menu[0]);
@@ -173,4 +175,13 @@ void runEx5() {
  */
 void runEx6() {
     system("./Ex6/a.out");
+}
+
+/**
+ * @brief - runs ex7
+ *
+ * @return void
+ */
+void runEx7() {
+    system("python3 ./Ex7/ex7.py");
 }
