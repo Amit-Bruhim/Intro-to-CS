@@ -18,14 +18,34 @@ A combined repository of exercises and mini-projects in C and Python, featuring 
 
 ---
 ## About
-I'm section: About the project.
-
+This repository is a combined collection of exercises and mini-projects from an Intro to Computer Science course. It features programs written in C and Python, covering topics such as loops, recursion, games, and a Wordle clone. The main project includes a unified menu to navigate and run each exercise or mini-project.
 ## Features
-I'm section: Features of the project.
+* Interactive Main Menu – lets you easily choose and launch any exercise or mini-project.
+
+* Ex2 – Loops and Conditions: practice basic control flow with loops and conditional statements.
+
+* Ex3 – Recursion: explore recursive problem-solving through simple algorithmic challenges.
+
+* Ex4 – Connect-N Game: a terminal-based game where players compete to connect N pieces in a row.
+
+* Ex5 – Bank Simulation: manage accounts and transactions with basic file and data operations.
+
+* Ex6 – New World: experiment with arrays, structures, and dynamic interactions.
+
+* Ex7 – Wordle Clone: a Python-based version of the popular word-guessing game.
 
 ## Requirements
-I'm section: Required tools, compilers, or Python version.
+To run this project, you’ll need:
 
+* A Linux environment (or WSL on Windows).
+
+* A working C compiler (gcc).
+
+* Python 3 installed.
+
+* The make build tool (usually preinstalled on Linux).
+
+* Git for version control and project management.
 ## Installation
 I'm section: Instructions on how to build and install the project.
 
