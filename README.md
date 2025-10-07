@@ -1,2 +1,2 @@
 # Intro-to-CS
-check vcs
+check vcs2
