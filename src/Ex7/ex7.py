@@ -1,5 +1,5 @@
 #set the default settings, and initalizes the scoreboard.
-settings = {"tries": 6, "word_length": 5, "file_path": "words.txt"}
+settings = {"tries": 6, "word_length": 5, "file_path": "Ex7/words.txt"}
 players_scores = []
 
 # define globals

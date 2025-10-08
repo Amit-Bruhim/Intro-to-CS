@@ -55,9 +55,9 @@ Follow these steps to set up the project locally:
 ```bash
 git clone https://github.com/Amit-Bruhim/Intro-to-CS.git  
 ```
-### 2. Navigate into the project directory
+### 2. Navigate into the src folder
 ```bash
-cd Intro-to-CS
+cd Intro-to-CS/src
 ```
 ### 3. Build the project using make
 ```bash
