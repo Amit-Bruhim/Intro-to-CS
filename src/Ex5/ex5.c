@@ -278,7 +278,6 @@ void makeTransaction(Bank *bank)
     printf("Enter instructions:\n");
     getchar();
     char *holder = getString();
-    printf("The holder is:\n%s\n", holder);
 
     // checks that the syntax of the string is valid
     if (isTransaction(holder) == 0)
