@@ -47,11 +47,38 @@ To run this project, you’ll need:
 
 * Git for version control and project management.
 ## Installation
-I'm section: Instructions on how to build and install the project.
+Follow these steps to set up the project locally:
 
+---
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/Amit-Bruhim/Intro-to-CS.git  
+```
+### 2. Navigate into the project directory
+```bash
+cd Intro-to-CS
+```
+### 3. Build the project using make
+```bash
+make
+```
+### 4. Run the main program
+```bash
+make run
+```
 ## Usage
-I'm section: How to run the project and use its features.
+After running the project, the following menu will appear:
 
+![Project Menu Screenshot](images/Menu.png)
+To interact with the program:
+- Enter the number corresponding to a menu item to run that exercise.
+- Enter `0` to exit the program.
+- If you enter a number that doesn’t exist in the menu, an error message will be displayed.
+
+For example, selecting option `1` from the menu will lead to:
+
+![Example Option Screenshot](images/option%201.png)  
 ## Examples
 I'm section: Example commands or screenshots of running programs.
 
