@@ -38,21 +38,37 @@ For example, entering the number `50`:
 ![Reverse Bits Screenshot](images/reverse%20bits.png)
 
 ### Reverse digits
-Selecting option `3` will run the Reverse Digits exercise:
+This exercise demonstrates reversing the digits of an integer using loops in C.
 
-![Reverse Digits Screenshot](images/reverse_digits.png)
+The program will ask you to **enter a number**. It will then reverse the digits of that number and display the result.
+
+For example, entering the number `12345`:
+
+![Reverse Digits Screenshot](images/reverse%20digits.png)
 
 ### Convert to Decimal
-Selecting option `4` will run the Convert to Decimal exercise:
+This exercise demonstrates converting a number from a given base to decimal in C.
 
-![Convert to Decimal Screenshot](images/convert_to_decimal.png)
+The program will ask you to **enter the base** and then **enter the number** in that base. It will then convert the number to decimal and display the result.
+
+For example, entering base `5` and number `1234`:
+
+![Convert to Decimal Screenshot](images/convert%20to%20decimal.png)
 
 ### Base64 to Decimal
-Selecting option `5` will run the Base64 to Decimal exercise:
+This exercise demonstrates converting a Base64 encoded number to decimal in C.
 
-![Base64 to Decimal Screenshot](images/base64_to_decimal.png)
+The program will ask you to **enter a Base64 number**. It will then convert it to decimal and display the result.
+
+For example, entering `A1`:
+
+![Base64 to Decimal Screenshot](images/base%2064%20to%20decimal.png)
 
 ### Swap bits
-Selecting option `6` will run the Swap Bits exercise:
+This exercise demonstrates swapping two bits of an integer in C.
 
-![Swap Bits Screenshot](images/swap_bits.png)
+The program will ask you to **enter a number** and then **enter two indexes** representing the bits to swap. It will display the result after swapping.
+
+For example, entering number `4` and indexes `1 2`:
+
+![Swap Bits Screenshot](images/swap%20bits.png)
