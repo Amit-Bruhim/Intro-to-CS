@@ -44,7 +44,6 @@ For example, creating a child named `Charlie` from parents `Bob` and `Alice`:
 
 ![New Offspring Screenshot](images/new%20offspring.png)
 
-### Print family top-down
 ### Print Family Top-Down
 This option displays the selected person's family tree from the top down.  
 It shows the person, their spouse (if any), and all descendants indented below them.  

@@ -22,9 +22,9 @@ This repository is a combined collection of exercises and mini-projects from an 
 * [Interactive Main Menu](#usage) – lets you easily choose and launch any exercise or mini-project.
 * [Ex2 – Loops and Conditions](src/Ex2/README.md): practice basic control flow with loops and conditional statements.
 * [Ex3 – Recursion](src/Ex3/README.md): explore recursive problem-solving through simple algorithmic challenges.
-* [Ex4 – Connect-N Game](src/Ex4/README.md): a terminal-based game where players compete to connect N pieces in a row.
-* [Ex5 – Bank Simulation](src/Ex5/README.md): manage accounts and transactions with basic file and data operations.
-* [Ex6 – New World](src/Ex6/README.md): experiment with arrays, structures, and dynamic interactions.
+* [Ex4 – Connect-N Game](src/Ex4/README.md): a terminal-based game where players compete to connect N pieces.
+* [Ex5 – Bank Simulation](src/Ex5/README.md): manage accounts and transactions with basic data operations.
+* [Ex6 – New World](src/Ex6/README.md): a terminal-based family tree simulation.
 * [Ex7 – Wordle Clone](src/Ex7/README.md): a Python-based version of the popular word-guessing game.
 
 ## Requirements

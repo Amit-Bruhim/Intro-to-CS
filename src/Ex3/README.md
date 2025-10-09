@@ -18,7 +18,6 @@ The program displays the following menu:
 ## Examples
 
 ### Binary strings
-### Binary strings
 This exercise demonstrates generating all binary strings of a given length **without two consecutive 1s**.
 
 The program will ask you to **enter the length** of the binary strings. It will then display all valid strings following the rule.
