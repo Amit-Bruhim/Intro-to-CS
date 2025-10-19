@@ -4,7 +4,7 @@
 ![Python](https://img.shields.io/badge/language-Python-yellow)
 
 # Intro to CS 💻
-⌨️ A combined repository of exercises and mini-projects in C and Python, featuring loops, recursion, games, and a Wordle clone.
+📝 A combined repository of exercises and mini-projects in C and Python, featuring loops, recursion, games, and a Wordle clone.
 
 ## Table of Contents
 
@@ -72,5 +72,6 @@ To interact with the program:
 For example, selecting option `1` from the menu will lead to:
 
 ![Example Option Screenshot](images/option%201.png)  
+
 
 
